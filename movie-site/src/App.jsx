@@ -1,4 +1,5 @@
 import './App.css'
+import Home from './pages/Home'
 
 // a component is a function in javascript that returns JSX (HTML in JS)(Jsx means JavaScript with html)
 //(this is a fragment, it is used to wrap multiple elements without adding an extra node to the DOM(<></>))
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <>
-
+      <Home />
     </>
   )
 }
