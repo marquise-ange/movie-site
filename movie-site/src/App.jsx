@@ -1,6 +1,7 @@
 import './App.css'
 import Home from "./pages/Home.jsx"
 import Favorites from "./pages/Favorites.jsx"
+import Navbar from "./Components/Navbar.jsx"
 import { Route, Routes } from 'react-router-dom'//importing the route and routes from react-router-dom to use the routing functionality in the app.
 
 // a component is a function in javascript that returns JSX (HTML in JS)(Jsx means JavaScript with html)
@@ -10,14 +11,17 @@ import { Route, Routes } from 'react-router-dom'//importing the route and routes
 function App() {
 
   return (
-    <main className="main-content">
+    <div>
+      <Navbar />
+      <main className="main-content">
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
-      
-    </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+
+      </main>
+    </div>
   );
 }
 
