@@ -1,5 +1,6 @@
 import './App.css'
 import Home from './pages/Home'
+import { route, Routes } from 'react-router-dom'//importing the route and routes from react-router-dom to use the routing functionality in the app.
 
 // a component is a function in javascript that returns JSX (HTML in JS)(Jsx means JavaScript with html)
 //(this is a fragment, it is used to wrap multiple elements without adding an extra node to the DOM(<></>))
@@ -8,10 +9,15 @@ import Home from './pages/Home'
 function App() {
 
   return (
-    <>
-      <Home />
-    </>
-  )
+    <main className="main-content">
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/favorites" element={<Favorites />} />
+
+      </Routes>
+    </main>
+  );
 }
 
 
