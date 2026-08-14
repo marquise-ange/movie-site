@@ -1,5 +1,5 @@
 //when a state change occur the entire component reran or re-rendered, and the new state value is used to update the component's output.
-import MovieCard from "../Components/MovieCard"
+import MovieCard from "../Components/MovieCard.jsx"
 import { useState } from "react" //hook 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");

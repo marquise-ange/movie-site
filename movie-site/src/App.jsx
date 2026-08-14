@@ -1,4 +1,4 @@
-import './App.css'
+import './css/App.css'
 import Home from "./pages/Home.jsx"
 import Favorites from "./pages/Favorites.jsx"
 import { Route, Routes } from 'react-router-dom'//importing the route and routes from react-router-dom to use the routing functionality in the app.
