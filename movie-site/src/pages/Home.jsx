@@ -1,6 +1,8 @@
 //when a state change occur the entire component reran or re-rendered, and the new state value is used to update the component's output.
 import MovieCard from "../Components/MovieCard.jsx"
 import { useState } from "react" //hook 
+import {searchMovies, getPopularMovies} from "../services/Api.js" //importing the functions from the Api.js file to use them in the Home component.
+import "../css/Home.css" //importing the css file to style the Home component.
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
     const movies = [
