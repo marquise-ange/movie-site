@@ -1,15 +1,32 @@
 //when a state change occur the entire component reran or re-rendered, and the new state value is used to update the component's output.
 import MovieCard from "../Components/MovieCard.jsx"
-import { useState } from "react" //hook 
+import { useState, useEffect } from "react" //hook 
 import {searchMovies, getPopularMovies} from "../services/Api.js" //importing the functions from the Api.js file to use them in the Home component.
 import "../css/Home.css" //importing the css file to style the Home component.
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
-    const movies = [
-        { id: 1, title: "John Wick", release_Date: "2020" },
-        { id: 2, title: "Terminator", release_Date: "2023" },
-        { id: 3, title: "superman", release_Date: "2014" },
-    ];
+    const [movies, setMovies] = useState([]); //state variable to store the list of movies fetched from the API.
+    const[error, setError] = useState(null) //state variable to store any error that occurs during the API call.
+    const[loading, setLoading] = useState(true) //state variable to store the loading state of the API call.
+    
+
+    useEffect(() => {
+        const loadPopularMovies = async () => {
+            try {
+                const popularMovies = await getPopularMovies(); //fetching the popular movies from the API using the getPopularMovies function.
+                setMovies(popularMovies); //updating the movies state variable with the fetched popular movies.
+            } catch (err) { 
+                console.log (err);
+                setError("Failed to fetch popular movies....") //updating the error state variable with the error message if the API call fails.;
+
+            }
+            finally {
+                setLoading(false); //setting the loading state to false after the API call is completed.
+            }
+        }
+        loadPopularMovies()
+
+    }, []);
 
 
     const handleSearch = (e) => {
