@@ -29,21 +29,23 @@ function Home() {
     }, []);
 
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();// prevent the default behavior of the form submission, which is to reload the page so that it doesn't update the page when the form is submitted.
-if (!searchQuery.trim()) return
-if (Loading) return
-  setLoading(true)
+        if (!searchQuery.trim()) return
+        if (loading) return
+        setLoading(true)
 
-  try {
+        try {
+            const searchResults = await searchMovies(searchQuery); //fetching the search results from the API using the searchMovies function.
+            setMovies(searchResults); //updating the movies state variable with the fetched search results.
+            setError(null) //clearing any previous error messages if the API call is successful.
+        } catch (err) {
+            console.log(err);
+            setError("Failed to fetch search movies....") //updating the error state variable with the error message if the API call fails.
+        } finally {
 
-  } catch (err) {
-
-  }finally {
-    setLoading(false)
-  }
-  
-        setSearchQuery("------")// clear the search input field after the form is submitted.
+            setLoading(false)
+        }
     };
     return (
         <div className="Home">
