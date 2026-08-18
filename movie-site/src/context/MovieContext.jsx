@@ -12,7 +12,8 @@ export const MovieProvider = ({ children }) => {
 
         if (storedFavs) {
             setFavorites(JSON.parse(storedFavs));
-        }, [])
+        }
+    }, []);
 
 
     useEffect(() => {
@@ -23,11 +24,23 @@ export const MovieProvider = ({ children }) => {
         setFavorites((prev) => [...prev, movie]);
     };
 
-const removeFavorite = (movieId) => {
+    const removeFavorite = (movieId) => {
         setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+    }
+
+    const isFavorite = (movieId) => {
+        return favorites.some((movie) => movie.id === movieId);
+    }
+
+    const value = {
+        favorites,
+        addFavorite,
+        removeFavorite,
+        isFavorite
+    }
 
 
-    return <movieContext.Provider>
+    return <movieContext.Provider value={value}>
         {children}
     </movieContext.Provider>
 }
